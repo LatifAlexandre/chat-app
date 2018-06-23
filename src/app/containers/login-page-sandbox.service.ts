@@ -13,8 +13,4 @@ export class LoginPageSandboxService {
   public login(username: string) {
     return this.authenticationService.login(username);
   }
-
-  public logIfSession(): Observable<boolean> {
-    return this.authenticationService.logIfSession();
-  }
 }

@@ -25,13 +25,6 @@ export class LoginPageComponent {
   username: string = '';
 
   constructor(private router: Router, private sb: LoginPageSandboxService) {
-    // we ask to log the user it is already logged
-    // and if this is the case, we redirect to chat
-    this.sb.logIfSession().subscribe( isAlreadyLogged => {
-      if (isAlreadyLogged) {
-        this.router.navigate(['/chat']);
-      }
-    });      
   }
 
   onGoRoomsClick() {

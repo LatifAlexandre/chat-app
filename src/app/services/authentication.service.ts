@@ -21,22 +21,7 @@ export class AuthenticationService implements CanActivate {
       // we set the values
       this.authState = authState;
       this.username = username;
-      // we store into the local storage the username
-      localStorage.setItem('chat_app_session', JSON.stringify({
-        username: username
-      }));
     })
-    .catch(error => console.log(error));
-  }
-
-  // check if already logged in a session
-  logIfSession(): Observable<boolean> {
-    const session = JSON.parse(localStorage.getItem('chat_app_session'));
-    if (session) {
-      return from(this.login(session.username)).pipe(mapTo(true));
-    } else {
-      return of(false);
-    }
   }
 
   // logout
@@ -44,8 +29,6 @@ export class AuthenticationService implements CanActivate {
     // sign out and redirection to login page
     this.afAuth.auth.signOut();
     this.router.navigate(['/login'])
-    // we delete the local storage
-    localStorage.setItem('chat_app_session', null);
   }
 
   getUsername() {
@@ -59,6 +42,4 @@ export class AuthenticationService implements CanActivate {
     }
     return !!this.authState;
   }
-
-
 }

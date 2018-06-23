@@ -10,7 +10,11 @@ export class LoginPageSandboxService {
   constructor(private authenticationService: AuthenticationService) {}
   
 
-  public login(username: string): Observable<boolean> {
+  public login(username: string) {
     return this.authenticationService.login(username);
+  }
+
+  public logIfSession(): Observable<boolean> {
+    return this.authenticationService.logIfSession();
   }
 }

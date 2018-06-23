@@ -20,22 +20,25 @@ import { take } from 'rxjs/operators';
   `,
   styleUrls: ['./login-page.component.scss']
 })
-export class LoginPageComponent implements OnInit {
+export class LoginPageComponent {
 
   username: string = '';
 
-  constructor(private router: Router, private loginPageSandboxService: LoginPageSandboxService) { }
-
-  ngOnInit() {
+  constructor(private router: Router, private sb: LoginPageSandboxService) {
+    // we ask to log the user it is already logged
+    // and if this is the case, we redirect to chat
+    this.sb.logIfSession().subscribe( isAlreadyLogged => {
+      if (isAlreadyLogged) {
+        this.router.navigate(['/chat']);
+      }
+    });      
   }
 
   onGoRoomsClick() {
-    this.loginPageSandboxService.login(this.username)
-    .pipe(
-      take(1)
-    ).subscribe( () => {
+    this.sb.login(this.username)
+    .then( () => {
       this.router.navigate(['/chat']);
-    })
+    });
   }
 
 }

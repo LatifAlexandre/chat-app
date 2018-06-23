@@ -6,6 +6,10 @@ import { RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 // external modules
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
+// firebase
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+import { environment } from '../environments/environment';
 
 // my containers
 import { AppComponent } from './app.component';
@@ -33,7 +37,10 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
     FormsModule,
     // external modules
-    AngularFontAwesomeModule
+    AngularFontAwesomeModule,
+    // firebase
+    AngularFireAuthModule,
+    AngularFireModule.initializeApp(environment.firebase)
   ],
   providers: [],
   bootstrap: [AppComponent]

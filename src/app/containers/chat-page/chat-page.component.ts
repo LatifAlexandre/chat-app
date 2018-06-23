@@ -1,3 +1,4 @@
+import { ChatPageSandboxService } from './../chat-page-sandbox.service';
 import { AuthenticationService } from './../../services/authentication.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -7,18 +8,27 @@ import { Component, OnInit } from '@angular/core';
     <h1> chat page </h1>
 
     hello {{ username }}
+
+    <button class="btn btn-danger"
+            (click)="onLogoutClick()" >
+      log out
+    </button>
   `,
   styleUrls: ['./chat-page.component.scss']
 })
 export class ChatPageComponent implements OnInit {
   
-  username = this.authenticationService.username;
+  username = this.sb.username;
 
-  constructor(private authenticationService: AuthenticationService) {
+  constructor(private sb: ChatPageSandboxService) {
 
   }
 
   ngOnInit() {
+  }
+
+  onLogoutClick() {
+    this.sb.logout();
   }
 
 }

@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { ChatPageSandboxService } from './../chat-page-sandbox.service';
 import { AuthenticationService } from './../../services/authentication.service';
 import { Component, OnInit } from '@angular/core';
@@ -20,7 +21,7 @@ export class ChatPageComponent implements OnInit {
   
   username = this.sb.username;
 
-  constructor(private sb: ChatPageSandboxService) {
+  constructor(private router: Router, private sb: ChatPageSandboxService) {
 
   }
 
@@ -28,7 +29,9 @@ export class ChatPageComponent implements OnInit {
   }
 
   onLogoutClick() {
-    this.sb.logout();
+    this.sb.logout().then( () => {
+      this.router.navigate(['/login'])
+    })
   }
 
 }

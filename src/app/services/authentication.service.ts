@@ -25,10 +25,10 @@ export class AuthenticationService implements CanActivate {
   }
 
   // logout
-  logout(): void {
+  logout() {
     // sign out and redirection to login page
-    this.afAuth.auth.signOut();
-    this.router.navigate(['/login'])
+    return this.afAuth.auth.signOut();
+    
   }
 
   getUsername() {

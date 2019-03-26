@@ -20,7 +20,8 @@ import {  LoginPageComponent } from './containers/login-page/login-page.componen
 const appRoutes: Routes = [
   { path: 'login', component: LoginPageComponent },
   { path: 'chat', component: ChatPageComponent, canActivate: [AuthenticationService]},
-  { path: '', redirectTo: '/login',pathMatch: 'full'}
+  { path: '', redirectTo: '/login',pathMatch: 'full'},
+  { path: '**', redirectTo: '/login' }
 ];
 
 
